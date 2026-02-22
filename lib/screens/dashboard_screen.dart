@@ -156,9 +156,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
               const SizedBox(height: 8),
 
-              // Transactions List
+              // Transactions List ->
               Expanded(
-                child: ListView(
+                 child: ListView(  //-> can scroll now -> using ListView
                   children: [
                     transactionItem(
                         icon: Icons.shopping_cart,
@@ -185,6 +185,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         title: 'Bank Transfer',
                         date: 'Mar 18',
                         amount: -100),
+                    transactionItem(
+                        icon: Icons.account_balance_wallet,
+                        title: 'Salary',
+                        date: 'Mar 25',
+                        amount: 2000),
+                    transactionItem(
+                        icon: Icons.store,
+                        title: 'Online Store',
+                        date: 'Mar 20',
+                        amount: -150),
+                    transactionItem(
+                        icon: Icons.account_balance,
+                        title: 'Bank Transfer',
+                        date: 'Mar 18',
+                        amount: -100),
+                    transactionItem(
+                        icon: Icons.account_balance_wallet,
+                        title: 'Salary',
+                        date: 'Mar 25',
+                        amount: 2000),
                   ],
                 ),
               ),
