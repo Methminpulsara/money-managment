@@ -24,7 +24,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: DashboardScreen(),
+      home: AddTransactionScreen(),
+      routes: {
+        '/transaction-add': (context) => AddTransactionScreen(),
+        '/home': (context) => DashboardScreen(),
+        '/transactions' : (context) => AddTransactionScreen()
+      },
 
      );
   }

@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 
 class AddTransactionScreen extends StatefulWidget {
   const AddTransactionScreen({super.key});
@@ -9,9 +7,7 @@ class AddTransactionScreen extends StatefulWidget {
   State<AddTransactionScreen> createState() => _AddTransactionScreenState();
 }
 
-
 class _AddTransactionScreenState extends State<AddTransactionScreen> {
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -27,13 +23,24 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
           "Add Transaction",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
         ),
+        // Corrected placement and syntax for your button
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(
+                context, '/transaction-success',
+                arguments: {"transactionType" : "Expense"},
+                    (route) => route.settings.name == '/home');
+            },
+            child: const Text("Home"),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             /// Toggle buttons
             Container(
               height: 45,

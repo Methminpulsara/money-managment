@@ -1,12 +1,55 @@
-
 import 'package:flutter/material.dart';
+import 'package:untitled/data/model/transaction_model.dart';
+import 'package:untitled/widgets/transaction_widget.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
-@override
-State<DashboardScreen> createState() => _DashboardScreenState();
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
+
+final List<TransactionModel> trans = [
+  TransactionModel(
+    iconName: Icons.add_ic_call_outlined,
+    title: "bla bla",
+    date: DateTime.parse("2021-12-01"),
+    amount: 100.00,
+    isExpense: true,
+  ),
+  TransactionModel(
+    iconName: Icons.two_k_sharp,
+    title: "bla bla",
+    date: DateTime.parse("2021-12-01"),
+    amount: 100.00,
+    isExpense: true,
+  ),TransactionModel(
+    iconName: Icons.eighteen_up_rating,
+    title: "bla bla",
+    date: DateTime.parse("2021-12-01"),
+    amount: 100.00,
+    isExpense: true,
+  ),TransactionModel(
+    iconName: Icons.fourteen_mp_sharp,
+    title: "bla bla",
+    date: DateTime.parse("2021-12-01"),
+    amount: 100.00,
+    isExpense: true,
+  ),
+  TransactionModel(
+    iconName: Icons.ten_k,
+    title: "bla bla",
+    date: DateTime.parse("2021-12-01"),
+    amount: 100.00,
+    isExpense: true,
+  ),TransactionModel(
+    iconName: Icons.twenty_mp_rounded,
+    title: "bla bla",
+    date: DateTime.parse("2021-12-01"),
+    amount: 100.00,
+    isExpense: true,
+  ),
+];
 
 
 class _DashboardScreenState extends State<DashboardScreen> {
@@ -145,7 +188,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Added routing here
+                      Navigator.pushNamed(context, '/profile');
+                    },
                     child: const Text(
                       'See All',
                       style: TextStyle(color: Colors.purple),
@@ -158,54 +204,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
               // Transactions List ->
               Expanded(
-                 child: ListView(  //-> can scroll now -> using ListView
-                  children: [
-                    transactionItem(
-                        icon: Icons.shopping_cart,
-                        title: 'Groceries',
-                        date: 'Today',
-                        amount: -120),
-                    transactionItem(
-                        icon: Icons.account_balance_wallet,
-                        title: 'Salary',
-                        date: 'Mar 25',
-                        amount: 2000),
-                    transactionItem(
-                        icon: Icons.local_taxi,
-                        title: 'Uber',
-                        date: 'Mar 24',
-                        amount: -35),
-                    transactionItem(
-                        icon: Icons.store,
-                        title: 'Online Store',
-                        date: 'Mar 20',
-                        amount: -150),
-                    transactionItem(
-                        icon: Icons.account_balance,
-                        title: 'Bank Transfer',
-                        date: 'Mar 18',
-                        amount: -100),
-                    transactionItem(
-                        icon: Icons.account_balance_wallet,
-                        title: 'Salary',
-                        date: 'Mar 25',
-                        amount: 2000),
-                    transactionItem(
-                        icon: Icons.store,
-                        title: 'Online Store',
-                        date: 'Mar 20',
-                        amount: -150),
-                    transactionItem(
-                        icon: Icons.account_balance,
-                        title: 'Bank Transfer',
-                        date: 'Mar 18',
-                        amount: -100),
-                    transactionItem(
-                        icon: Icons.account_balance_wallet,
-                        title: 'Salary',
-                        date: 'Mar 25',
-                        amount: 2000),
-                  ],
+                child: ListView.separated(  //-> can scroll now -> using ListView
+                    itemCount: trans.length,
+                    itemBuilder:(context,index) {
+                      return TransactionWidget(transacton: trans[index]);
+
+                    },
+                    separatorBuilder: (context,index) {
+                      return Divider(thickness: 1,);
+                    }
+
+
                 ),
               ),
             ],
@@ -214,31 +223,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.purple,
-        onPressed: () {},
+        onPressed: () {
+          // Added routing here
+          Navigator.pushNamed(context, '/add_transaction');
+        },
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+
+
   }
 
-  Widget transactionItem(
-      {required IconData icon,
-        required String title,
-        required String date,
-        required double amount}) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 6),
-      child: ListTile(
-        leading: Icon(icon, size: 30),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text(date),
-        trailing: Text(
-          '${amount >= 0 ? '+' : '-'}\$${amount.abs().toStringAsFixed(2)}',
-          style: TextStyle(
-              color: amount >= 0 ? Colors.green : Colors.red,
-              fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
+// Widget transactionItem(
+//     {required IconData icon,
+//       required String title,
+//       required String date,
+//       required double amount}) {
+//   return Card(
+//     margin: const EdgeInsets.symmetric(vertical: 6),
+//     child: ListTile(
+//       leading: Icon(icon, size: 20),
+//       title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+//       subtitle: Text(date),
+//       trailing: Text(
+//         '${amount >= 0 ? '+' : '-'}\$${amount.abs().toStringAsFixed(2)}',
+//         style: TextStyle(
+//             color: amount >= 0 ? Colors.green : Colors.red,
+//             fontWeight: FontWeight.bold),
+//       ),
+//     ),
+//   );
+// }
 }
