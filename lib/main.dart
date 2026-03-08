@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/screens/add_transaction_screen.dart';
 import 'package:untitled/screens/dashboard_screen.dart';
+import 'package:untitled/screens/home.dart';
+import 'package:untitled/screens/profile_screen.dart';
+import 'package:untitled/screens/transaction_screen.dart';
+import 'package:untitled/screens/transactions_success.dart';
 
 import 'config/size_config.dart';
 
@@ -24,11 +28,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: AddTransactionScreen(),
+      home: Home(),
       routes: {
+        "/home" : (context) => Home(),
         '/transaction-add': (context) => AddTransactionScreen(),
-        '/home': (context) => DashboardScreen(),
-        '/transactions' : (context) => AddTransactionScreen()
+        '/dashboard': (context) => DashboardScreen(),
+        '/transactions' : (context) => TransactionScreen(),
+        '/profile' : (context) => ProfileScreen(),
+        "/success": (context) => TransactionSuccessScreen()
       },
 
      );

@@ -5,6 +5,11 @@ import 'package:untitled/widgets/transaction_widget.dart';
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
+  Future<void> openTransactions(BuildContext context) async {
+    final result = await Navigator.pushNamed(context, "/transaction");
+    print(result);
+  }
+
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
@@ -190,7 +195,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   TextButton(
                     onPressed: () {
                       // Added routing here
-                      Navigator.pushNamed(context, '/profile');
+                      Navigator.pushNamed(context, '/');
                     },
                     child: const Text(
                       'See All',
@@ -225,7 +230,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         backgroundColor: Colors.purple,
         onPressed: () {
           // Added routing here
-          Navigator.pushNamed(context, '/add_transaction');
+          Navigator.pushNamed(context, '/success');
         },
         child: const Icon(Icons.add),
       ),

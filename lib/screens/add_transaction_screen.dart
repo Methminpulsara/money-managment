@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/data/model/transaction_model.dart';
 
 class AddTransactionScreen extends StatefulWidget {
   const AddTransactionScreen({super.key});
@@ -28,12 +29,22 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamedAndRemoveUntil(
-                context, '/transaction-success',
-                arguments: {"transactionType" : "Expense"},
-                    (route) => route.settings.name == '/home');
+                context,
+                '/success', // Ensure this route is registered in main.dart
+                    (route) => false, // This clears the previous screens
+                arguments: {
+                  "transaction": TransactionModel(
+                    iconName: Icons.twenty_mp_rounded,
+                    title: "Dinner",
+                    date: DateTime.now(),
+                    amount: 12.89,
+                    isExpense: true,
+                  ),
+                },
+              );
             },
-            child: const Text("Home"),
-          ),
+            child: const Text("Confirm"),
+          )
         ],
       ),
       body: Padding(
